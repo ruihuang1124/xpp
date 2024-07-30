@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>xpp_cyberdog</name>
+    <version>0.0.0</version>
+    <description>The cyberdog description package</description>
+    <maintainer email="fanziqi614@gmail.com">fan-ziqi</maintainer>
+    <license>TODO</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>xacro</depend>
+    <depend>roscpp</depend>
+    <depend>std_msgs</depend>
+    <depend>xpp_vis</depend>
+</package>
