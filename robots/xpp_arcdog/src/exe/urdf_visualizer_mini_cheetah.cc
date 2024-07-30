@@ -47,14 +47,14 @@ using namespace quad;
 
 int main(int argc, char *argv[])
 {
-	::ros::init(argc, argv, "cyberdog_urdf_visualizer");
+	::ros::init(argc, argv, "mini_cheetah_urdf_visualizer");
 
-	const std::string joint_desired_cyberdog = "xpp/joint_mini_cheetah_des";
+	const std::string joint_desired_mini_cheetah = "xpp/joint_mini_cheetah_des";
 
 	auto mini_cheetah_ik = std::make_shared<InverseKinematicsMiniCheetah>();
 	CartesianJointConverter inv_kin_converter(mini_cheetah_ik,
                                               xpp_msgs::robot_state_desired,
-                                              joint_desired_cyberdog);
+                                              joint_desired_mini_cheetah);
 
 	// urdf joint names
 	int n_ee = mini_cheetah_ik->GetEECount();
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 
 	std::string urdf = "mini_cheetah_rviz_urdf_robot_description";
 	UrdfVisualizer mini_cheetah_desired(urdf, joint_names, "base", "world",
-                                        joint_desired_cyberdog, "mini_cheetah_des");
+                                        joint_desired_mini_cheetah, "mini_cheetah_des");
 
 	::ros::spin();
 

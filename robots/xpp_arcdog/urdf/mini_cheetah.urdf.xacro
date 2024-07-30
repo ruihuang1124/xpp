@@ -43,6 +43,14 @@
         <origin rpy="0 0 0" xyz="0.19 -0.049 0.0"/>
         <parent link="trunk"/>
         <child link="FR_hip"/>
+        <limit
+        lower="-0.75"
+        upper="0.75"
+        effort="17"
+        velocity="12" />
+        <dynamics
+        damping="0.01"
+        friction="0.2" />
     </joint>
     <link name="FR_hip">
         <inertial>
@@ -66,10 +74,18 @@
     </link>
 
     <joint name="FR_thigh_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.062 0.00"/>
         <parent link="FR_hip"/>
         <child link="FR_thigh"/>
+        <limit
+         lower="-1.257"
+         upper="4.363"
+         effort="24"
+         velocity="12" />
+        <dynamics
+         damping="0.01"
+         friction="0.2" />
     </joint>
     <link name="FR_thigh">
         <inertial>
@@ -93,10 +109,18 @@
     </link>
 
     <joint name="FR_calf_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.209"/>
         <parent link="FR_thigh"/>
         <child link="FR_calf"/>
+        <limit
+          lower="-2.478"
+          upper="-0.506"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="FR_calf">
         <inertial>
@@ -156,6 +180,14 @@
         <origin rpy="0 0 0" xyz="0.19 0.049 0.0"/>
         <parent link="trunk"/>
         <child link="FL_hip"/>
+        <limit
+        lower="-0.75"
+        upper="0.75"
+        effort="17"
+        velocity="12" />
+        <dynamics
+        damping="0.01"
+        friction="0.2" />
     </joint>
     <link name="FL_hip">
         <inertial>
@@ -179,10 +211,18 @@
     </link>
 
     <joint name="FL_thigh_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.062 0.00"/>
         <parent link="FL_hip"/>
         <child link="FL_thigh"/>
+        <limit
+          lower="-1.257"
+          upper="4.363"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="FL_thigh">
         <inertial>
@@ -206,10 +246,18 @@
     </link>
 
     <joint name="FL_calf_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.209"/>
         <parent link="FL_thigh"/>
         <child link="FL_calf"/>
+        <limit
+          lower="-2.478"
+          upper="-0.506"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="FL_calf">
         <inertial>
@@ -270,6 +318,14 @@
         <origin rpy="0 0 0" xyz="-0.19 -0.049 0.0"/>
         <parent link="trunk"/>
         <child link="RR_hip"/>
+        <limit
+          lower="-0.75"
+          upper="0.75"
+          effort="17"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RR_hip">
         <inertial>
@@ -293,10 +349,18 @@
     </link>
 
     <joint name="RR_thigh_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.062 0.00"/>
         <parent link="RR_hip"/>
         <child link="RR_thigh"/>
+        <limit
+          lower="-2.01"
+          upper="3.49"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RR_thigh">
         <inertial>
@@ -320,10 +384,18 @@
     </link>
 
     <joint name="RR_calf_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.209"/>
         <parent link="RR_thigh"/>
         <child link="RR_calf"/>
+        <limit
+          lower="-2.478"
+          upper="-0.506"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RR_calf">
         <inertial>
@@ -384,6 +456,14 @@
         <origin rpy="0 0 0" xyz="-0.19 0.049 0.0"/>
         <parent link="trunk"/>
         <child link="RL_hip"/>
+        <limit
+          lower="-0.75"
+          upper="0.75"
+          effort="17"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RL_hip">
         <inertial>
@@ -407,10 +487,18 @@
     </link>
 
     <joint name="RL_thigh_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.062 0.00"/>
         <parent link="RL_hip"/>
         <child link="RL_thigh"/>
+        <limit
+          lower="-2.01"
+          upper="3.49"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RL_thigh">
         <inertial>
@@ -434,10 +522,18 @@
     </link>
 
     <joint name="RL_calf_joint" type="continuous">
-        <axis xyz="0 -1 0"/>
+        <axis xyz="0 1 0"/>
         <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.209"/>
         <parent link="RL_thigh"/>
         <child link="RL_calf"/>
+        <limit
+          lower="-2.478"
+          upper="-0.506"
+          effort="24"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
     </joint>
     <link name="RL_calf">
         <inertial>

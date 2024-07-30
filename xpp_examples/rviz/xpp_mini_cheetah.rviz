@@ -199,9 +199,9 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-      Name: Cyberdog
-      Robot Description: /cyberdog_rviz_urdf_robot_description
-      TF Prefix: cyberdog_des
+      Name: MiniCheetah
+      Robot Description: /mini_cheetah_rviz_urdf_robot_description
+      TF Prefix: mini_cheetah_des
       Update Interval: 0
       Value: true
       Visual Enabled: true
