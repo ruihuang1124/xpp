@@ -32,7 +32,7 @@ namespace xpp
         int GetEECount() const override { return 4; };
 
     private:
-        Vector3d base2hip_LF_ = Vector3d(0.23536, 0.05, 0.0);
+        Vector3d base2hip_LF_ = Vector3d(0.19, 0.049, 0.0);
         ArcdoglegInverseKinematics leg;
     };
 

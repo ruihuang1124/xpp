@@ -58,22 +58,22 @@ namespace xpp
 			{
 				case RF:
 					ee_pos_B = pos_B.at(ee);
-					_pHip2B << 0.235, -0.05, 0;
+					_pHip2B << 0.19, -0.049, 0;
 					_sideSign = -1;
 					break;
 				case LF:
 					ee_pos_B = pos_B.at(ee);
-					_pHip2B << 0.235, 0.05, 0;
+					_pHip2B << 0.19, 0.049, 0;
 					_sideSign = 1;
 					break;
 				case RH:
 					ee_pos_B = pos_B.at(ee);
-					_pHip2B << -0.235, -0.05, 0;
+					_pHip2B << -0.19, -0.049, 0;
 					_sideSign = -1;
 					break;
 				case LH:
 					ee_pos_B = pos_B.at(ee);
-					_pHip2B << -0.235, 0.05, 0;
+					_pHip2B << -0.19, 0.049, 0;
 					_sideSign = 1;
 					break;
 				default: // joint angles for this foot do not exist

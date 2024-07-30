@@ -73,9 +73,9 @@ namespace xpp {
         void EnforceLimits(double &q, ArcdogJointID joint) const;
 
     private:
-        double _abadLinkLength = 0.10715;
-        double _hipLinkLength = 0.2;
-        double _kneeLinkLength = 0.217;
+        double _abadLinkLength = 0.062;
+        double _hipLinkLength = 0.209;
+        double _kneeLinkLength = 0.195;
         static double q1_ik(double py, double pz, double l1);
         static double q3_ik(double b3z, double b4z, double b);
         static double q2_ik(double q1, double q3, double px, double py, double pz, double b3z, double b4z);
