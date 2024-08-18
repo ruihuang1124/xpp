@@ -7,7 +7,7 @@
   <node name="rviz_xpp" pkg="rviz" type="rviz"  args="-d $(find xpp_examples)/rviz/xpp_mini_cheetah.rviz">
   </node>
   
-  <!-- Launch hyq visualizer -->
+  <!-- Launch mini_cheetah visualizer -->
   <include file="$(find xpp_arcdog)/launch/mini_cheetah.launch"></include>
 
   <!-- Publish robot states from rosbag  --> 
