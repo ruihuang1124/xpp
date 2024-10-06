@@ -27,6 +27,7 @@ include_directories(
 add_library(${PROJECT_NAME}
   src/arcdogleg_inverse_kinematics.cc
         src/inverse_kinematics_mini_cheetah.cc
+        src/inverse_kinematics_arcdog.cc
 )
 
 add_executable(urdf_visualizer_mini_cheetah src/exe/urdf_visualizer_mini_cheetah.cc)
@@ -34,6 +35,12 @@ target_link_libraries(urdf_visualizer_mini_cheetah
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
+
+add_executable(urdf_visualizer_arcdog src/exe/urdf_visualizer_arcdog.cc)
+target_link_libraries(urdf_visualizer_arcdog
+        ${PROJECT_NAME}
+        ${catkin_LIBRARIES}
+        )
 
 #############
 ## Install ##

@@ -2,8 +2,8 @@
 // Created by ray on 7/30/24.
 //
 
-#ifndef XPP_ARCDOG_INVERSE_KINEMATICS_ARCDOG_H
-#define XPP_ARCDOG_INVERSE_KINEMATICS_ARCDOG_H
+#ifndef XPP_ARCDOG_INVERSE_KINEMATICS_MINI_CHEETAH_H
+#define XPP_ARCDOG_INVERSE_KINEMATICS_MINI_CHEETAH_H
 
 #include <xpp_vis/inverse_kinematics.h>
 #include <xpp_arcdog/arcdogleg_inverse_kinematics.h>
@@ -33,9 +33,9 @@ namespace xpp
 
     private:
         Vector3d base2hip_LF_ = Vector3d(0.19, 0.049, 0.0);
-        ArcdoglegInverseKinematics leg;
+        MiniCheetahlegInverseKinematics leg;
     };
 
 } /* namespace xpp */
 
-#endif //XPP_ARCDOG_INVERSE_KINEMATICS_ARCDOG_H
+#endif //XPP_ARCDOG_INVERSE_KINEMATICS_MINI_CHEETAH_H

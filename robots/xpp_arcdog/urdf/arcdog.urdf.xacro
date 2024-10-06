@@ -1,0 +1,592 @@
+<?xml version="1.0" ?>
+<robot name="arcdog" xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+    </material>
+    <link name="base">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="floating_base" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="base"/>
+      <child link="trunk"/>
+    </joint>
+
+    <link name="trunk">
+        <inertial>
+            <mass value="8.598"/>
+            <origin xyz="-0.000471 -0.0007 -0.008687"/>
+            <inertia ixx="0.031511" ixy="0" ixz="0" iyy="0.142974" iyz="0" izz="0.158471"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/trunk/arcdog_trunk.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/trunk/arcdog_trunk.dae"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <!--!!!!!!!!!!!! Front Right Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="FR_hip_joint" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="0.274 -0.0605 0.0"/>
+        <parent link="trunk"/>
+        <child link="FR_hip"/>
+        <limit
+        lower="-0.95"
+        upper="0.95"
+        effort="35"
+        velocity="18" />
+        <dynamics
+        damping="0.01"
+        friction="0.2" />
+    </joint>
+    <link name="FR_hip">
+        <inertial>
+            <mass value="0.805"/>
+            <origin xyz="-0.006155 0.006938 0.0"/>
+            <inertia ixx="0.000572" ixy="0.00" ixz="0.000"
+                iyy="0.001051" iyz="0.00000095" izz="0.000785"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="3.141592 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="3.141592 0 0.0" xyz="0.0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="FR_thigh_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.0972 0.00"/>
+        <parent link="FR_hip"/>
+        <child link="FR_thigh"/>
+        <limit
+         lower="-1.257"
+         upper="4.363"
+         effort="35"
+         velocity="18" />
+        <dynamics
+         damping="0.01"
+         friction="0.2" />
+    </joint>
+    <link name="FR_thigh">
+        <inertial>
+            <mass value="1.652"/>
+            <origin xyz="-0.005377 0.23858 -0.041813"/>
+            <inertia ixx="0.010621" ixy="0.000245" ixz="0.000013"
+                iyy="0.010208" iyz="0.0000015" izz="0.002233"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh_mirror.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh_mirror.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="FR_calf_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.2445"/>
+        <parent link="FR_thigh"/>
+        <child link="FR_calf"/>
+        <limit
+          lower="-2.878"
+          upper="-0.106"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="FR_calf">
+        <inertial>
+            <mass value="0.279"/>
+            <origin xyz="0.005337 0.000 -0.117807"/>
+            <inertia ixx="0.002485" ixy="0" ixz="0.0" iyy="0.002512" iyz="0" izz="0.000052"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+    <link name="toe_fr">
+    <contact>
+      <friction_anchor/>
+      <stiffness value="30000.0"/>
+      <damping value="1000.0"/>
+      <spinning_friction value="0.3"/>
+      <lateral_friction value="3.0"/>
+    </contact>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="darkgray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.15"/>
+      <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
+    </inertial>
+  </link>
+  <joint name="toe_fr_joint" type="fixed">
+    <parent link="FR_calf"/>
+    <child link="toe_fr"/>
+    <origin xyz="0 0 -0.2485"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+<!--!!!!!!!!!!!! Front Left Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="FL_hip_joint" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="0.274 0.0605 0.0"/>
+        <parent link="trunk"/>
+        <child link="FL_hip"/>
+        <limit
+        lower="-0.95"
+        upper="0.95"
+        effort="35"
+        velocity="18" />
+        <dynamics
+        damping="0.01"
+        friction="0.2" />
+    </joint>
+    <link name="FL_hip">
+        <inertial>
+            <mass value="0.805"/>
+            <origin xyz="-0.006155 0.006938 0.0"/>
+            <inertia ixx="0.000572" ixy="0.00" ixz="0.000"
+                iyy="0.001051" iyz="0.00000095" izz="0.000785"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="0 0 0.0" xyz="0.0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="FL_thigh_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0972 0.00"/>
+        <parent link="FL_hip"/>
+        <child link="FL_thigh"/>
+        <limit
+         lower="-1.257"
+         upper="4.363"
+         effort="35"
+         velocity="18" />
+        <dynamics
+         damping="0.01"
+         friction="0.2" />
+    </joint>
+    <link name="FL_thigh">
+        <inertial>
+            <mass value="1.652"/>
+            <origin xyz="-0.005377 0.23858 -0.041813"/>
+            <inertia ixx="0.010621" ixy="0.000245" ixz="0.000013"
+                iyy="0.010208" iyz="0.0000015" izz="0.002233"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="FL_calf_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.2445"/>
+        <parent link="FL_thigh"/>
+        <child link="FL_calf"/>
+        <limit
+          lower="-2.878"
+          upper="-0.106"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="FL_calf">
+        <inertial>
+            <mass value="0.279"/>
+            <origin xyz="0.005337 0.000 -0.117807"/>
+            <inertia ixx="0.002485" ixy="0" ixz="0.0" iyy="0.002512" iyz="0" izz="0.000052"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+    <link name="toe_fl">
+      <contact>
+      <friction_anchor/>
+      <stiffness value="30000.0"/>
+      <damping value="1000.0"/>
+      <spinning_friction value="0.3"/>
+      <lateral_friction value="3.0"/>
+    </contact>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="darkgray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.15"/>
+      <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
+    </inertial>
+  </link>
+  <joint name="toe_fl_joint" type="fixed">
+    <parent link="FL_calf"/>
+    <child link="toe_fl"/>
+    <origin xyz="0 0 -0.2485"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+
+<!--!!!!!!!!!!!! Hind Right Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="RR_hip_joint" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="-0.274 -0.0605 0.0"/>
+        <parent link="trunk"/>
+        <child link="RR_hip"/>
+        <limit
+        lower="-0.95"
+        upper="0.95"
+        effort="35"
+        velocity="18" />
+        <dynamics
+        damping="0.01"
+        friction="0.2" />
+    </joint>
+    <link name="RR_hip">
+        <inertial>
+            <mass value="0.805"/>
+            <origin xyz="-0.006155 0.006938 0.0"/>
+            <inertia ixx="0.000572" ixy="0.00" ixz="0.000"
+                iyy="0.001051" iyz="0.00000095" izz="0.000785"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 3.1415926" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="0 0 3.1415926" xyz="0.0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="RR_thigh_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.0972 0.00"/>
+        <parent link="RR_hip"/>
+        <child link="RR_thigh"/>
+        <limit
+          lower="-2.01"
+          upper="3.49"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="RR_thigh">
+        <inertial>
+            <mass value="1.652"/>
+            <origin xyz="-0.005377 0.23858 -0.041813"/>
+            <inertia ixx="0.010621" ixy="0.000245" ixz="0.000013"
+                iyy="0.010208" iyz="0.0000015" izz="0.002233"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh_mirror.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh_mirror.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="RR_calf_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.2445"/>
+        <parent link="RR_thigh"/>
+        <child link="RR_calf"/>
+        <limit
+          lower="-2.878"
+          upper="-0.106"
+          effort="35"
+          velocity="12" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="RR_calf">
+        <inertial>
+            <mass value="0.279"/>
+            <origin xyz="0.005337 0.000 -0.117807"/>
+            <inertia ixx="0.002485" ixy="0" ixz="0.0" iyy="0.002512" iyz="0" izz="0.000052"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+     <link name="toe_hr">
+      <contact>
+      <friction_anchor/>
+      <stiffness value="30000.0"/>
+      <damping value="1000.0"/>
+      <spinning_friction value="0.3"/>
+      <lateral_friction value="3.0"/>
+    </contact>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="darkgray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.15"/>
+      <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
+    </inertial>
+  </link>
+  <joint name="toe_hr_joint" type="fixed">
+    <parent link="RR_calf"/>
+    <child link="toe_hr"/>
+    <origin xyz="0 0 -0.2485"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+
+<!--!!!!!!!!!!!! Hind Left Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="RL_hip_joint" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="-0.274 0.0605 0.0"/>
+        <parent link="trunk"/>
+        <child link="RL_hip"/>
+        <limit
+          lower="-0.95"
+          upper="0.95"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="RL_hip">
+        <inertial>
+            <mass value="0.805"/>
+            <origin xyz="-0.006155 0.006938 0.0"/>
+            <inertia ixx="0.000572" ixy="0.00" ixz="0.000"
+                iyy="0.001051" iyz="0.00000095" izz="0.000785"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="3.1415926 0.0 3.1415926" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_hip.dae"/>
+            </geometry>
+            <origin rpy="3.1415926 0 3.1415926" xyz="0.0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="RL_thigh_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0972 0.00"/>
+        <parent link="RL_hip"/>
+        <child link="RL_thigh"/>
+        <limit
+          lower="-2.51"
+          upper="3.49"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="RL_thigh">
+        <inertial>
+            <mass value="1.652"/>
+            <origin xyz="-0.005377 0.23858 -0.041813"/>
+            <inertia ixx="0.010621" ixy="0.000245" ixz="0.000013"
+                iyy="0.010208" iyz="0.0000015" izz="0.002233"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_thigh.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="RL_calf_joint" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0.0 0 0.0" xyz="0.0 0.0 -0.2445"/>
+        <parent link="RL_thigh"/>
+        <child link="RL_calf"/>
+        <limit
+          lower="-2.878"
+          upper="-0.106"
+          effort="35"
+          velocity="18" />
+        <dynamics
+          damping="0.01"
+          friction="0.2" />
+    </joint>
+    <link name="RL_calf">
+        <inertial>
+            <mass value="0.279"/>
+            <origin xyz="0.005337 0.000 -0.117807"/>
+            <inertia ixx="0.002485" ixy="0" ixz="0.0" iyy="0.002512" iyz="0" izz="0.000052"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://xpp_arcdog/meshes/leg/arcdog_calf.dae"/>
+            </geometry>
+            <origin rpy="0 0.0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+    <link name="toe_hl">
+      <contact>
+      <friction_anchor/>
+      <stiffness value="30000.0"/>
+      <damping value="1000.0"/>
+      <spinning_friction value="0.3"/>
+      <lateral_friction value="3.0"/>
+    </contact>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="darkgray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.15"/>
+      <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
+    </inertial>
+  </link>
+  <joint name="toe_hl_joint" type="fixed">
+    <parent link="RL_calf"/>
+    <child link="toe_hl"/>
+    <origin xyz="0 0 -0.2485"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+
+</robot>
+

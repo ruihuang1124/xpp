@@ -5,5 +5,6 @@
   <include file="$(find xpp_hyq)/launch/biped.launch"></include>
   <include file="$(find xpp_hyq)/launch/hyq.launch"></include>
   <include file="$(find xpp_arcdog)/launch/mini_cheetah.launch"></include>
+  <include file="$(find xpp_arcdog)/launch/arcdog.launch"></include>
   
 </launch>
